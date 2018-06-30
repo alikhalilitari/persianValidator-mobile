@@ -1,0 +1,21 @@
+{
+    "name": "persian-validator/mobile",
+    "description": "Validates mobile numbers in Iran",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ali Khalili",
+            "email": "ali.khalili5544@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PersianValidator\\Mobile\\MobileValidatorServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
