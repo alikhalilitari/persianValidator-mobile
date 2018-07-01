@@ -175,7 +175,7 @@ class Mobile
         return $this->number;
     }
 
-    
+
     private function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
