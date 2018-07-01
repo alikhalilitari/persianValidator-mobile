@@ -1,6 +1,11 @@
 ## Persian Mobile Validator
 A simple class to validate mobile numbers in Iran. 
 
+## Install
+Via Composer
+```php
+$ composer require persian-validator/mobile
+```
 ## Usage
 Instantiate the class 
 ```php
