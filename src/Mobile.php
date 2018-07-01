@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: pfm-5
+ * User: Ali Khalili
  * Date: 5/27/18
  * Time: 12:35 PM
  */
@@ -31,11 +31,6 @@ class Mobile
     }
 
 
-    public static function make($number)
-    {
-        return new static($number);
-    }
-
     public function validate()
     {
         if (! ($this->validMobile() && $this->isDigit() && $this->checkLength())) {
@@ -43,7 +38,6 @@ class Mobile
         }
     }
 
-    // This two methods are just for laravel Validations since they don't work with Exceptions
     public function isValid()
     {
         try {
@@ -63,37 +57,37 @@ class Mobile
 
     public function isHamrahAval()
     {
-        return starts_with($this->number, $this->hamrahAval);
+        return $this->startsWith($this->number, $this->hamrahAval);
     }
 
     public function isTaliya()
     {
-        return starts_with($this->number, $this->taliya);
+        return $this->startsWith($this->number, $this->taliya);
     }
 
     public function isSpadan()
     {
-        return starts_with($this->number, $this->spadan);
+        return $this->startsWith($this->number, $this->spadan);
     }
 
     public function isKish()
     {
-        return starts_with($this->number, $this->kish);
+        return $this->startsWith($this->number, $this->kish);
     }
 
     public function isIrancell()
     {
-        return starts_with($this->number, $this->irancell);
+        return $this->startsWith($this->number, $this->irancell);
     }
 
     public function isRightel()
     {
-        return starts_with($this->number, $this->rightel);
+        return $this->startsWith($this->number, $this->rightel);
     }
 
     protected function validMobile()
     {
-        return starts_with($this->number, array_merge($this->hamrahAval, $this->irancell, $this->rightel, $this->spadan, $this->taliya, $this->kish));
+        return $this->startsWith($this->number, array_merge($this->hamrahAval, $this->irancell, $this->rightel, $this->spadan, $this->taliya, $this->kish));
     }
 
     protected function isDigit()
@@ -136,43 +130,60 @@ class Mobile
             return 'این شماره موبایل همراه اول نمی باشد. فقط شماره های همراه اول بر اساس استان میباشند';
         }
 
-        if (starts_with($this->number, '0911')) {
+        if ($this->startsWith($this->number, '0911')) {
             return 'گلستان، گیلان، مازندران';
         }
 
-        if (starts_with($this->number, '0912')) {
+        if ($this->startsWith($this->number, '0912')) {
             return 'تهران، البرز، زنجان، سمنان، قزوین، قم';
         }
 
-        if (starts_with($this->number, '0913')) {
+        if ($this->startsWith($this->number, '0913')) {
             return 'اصفهان، کرمان، یزد، چهارمحال و بختیاری';
         }
 
-        if (starts_with($this->number, '0914')) {
+        if ($this->startsWith($this->number, '0914')) {
             return 'آذربایجان شرقی، غربی، اردبیل';
         }
 
-        if (starts_with($this->number, '0915')) {
+        if ($this->startsWith($this->number, '0915')) {
             return 'خراسان شمالی، رضوی، جنوبی، سیستان و بلوچستان';
         }
 
-        if (starts_with($this->number, '0916')) {
+        if ($this->startsWith($this->number, '0916')) {
             return 'خوزستان، لرستان';
         }
 
-        if (starts_with($this->number, '0917')) {
+        if ($this->startsWith($this->number, '0917')) {
             return 'فارس، کهگیلویه و بویر احمد، هرمزگان، بوشهر';
         }
 
-        if (starts_with($this->number, '0918')) {
+        if ($this->startsWith($this->number, '0918')) {
             return 'همدان، ایلام، مرکزی، کردستان، کرمانشاه';
         }
 
         return 'کلیه شهرهای ایران';
     }
 
+    public static function make($number)
+    {
+        return new static($number);
+    }
+
     public function __toString()
     {
         return $this->number;
+    }
+
+    
+    private function startsWith($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ($needle !== '' && substr($haystack, 0, strlen($needle)) === (string) $needle) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

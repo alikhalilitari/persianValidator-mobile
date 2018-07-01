@@ -1,7 +1,7 @@
 ## Persian Mobile Validator
 A simple class to validate mobile numbers in Iran. 
 
-##Usage
+## Usage
 Instantiate the class 
 ```php
 $mobile = Mobile::make('0912000000');
