@@ -3,7 +3,7 @@ A simple class to validate mobile numbers in Iran.
 
 ## Install
 Via Composer
-```php
+```shell
 $ composer require persian-validator/mobile
 ```
 ## Usage
