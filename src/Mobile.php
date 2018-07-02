@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ali Khalili
- * Date: 5/27/18
- * Time: 12:35 PM
- */
 
 namespace PersianValidator\Mobile;
 
