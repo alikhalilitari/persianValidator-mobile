@@ -16,6 +16,7 @@ class Mobile
     private $spadan = ['0931', '09324'];
     private $taliya = ['09329'];
     private $kish = ['0934'];
+    private $shatel = ['0998'];
 
 
 
@@ -79,9 +80,16 @@ class Mobile
         return $this->startsWith($this->number, $this->rightel);
     }
 
+    public function isShatel()
+    {
+        return $this->startsWith($this->number, $this->rightel);
+    }
+
+
+
     protected function validMobile()
     {
-        return $this->startsWith($this->number, array_merge($this->hamrahAval, $this->irancell, $this->rightel, $this->spadan, $this->taliya, $this->kish));
+        return $this->startsWith($this->number, array_merge($this->hamrahAval, $this->irancell, $this->rightel, $this->spadan, $this->taliya, $this->kish, $this->shatel));
     }
 
     protected function isDigit()
@@ -115,6 +123,10 @@ class Mobile
         if ($this->isRightel()) {
             return 'اپراتور سوم ، رایتل ، تامین تلکام ، سازمان تامین اجتماعی ، Rightel';
         }
+        if ($this->isShatel()) {
+            return 'خدمات شاتل‌تاک';
+        }
+
         return 'این شماره موبایل خطا میباشد';
     }
 
